@@ -1,3 +1,4 @@
 # job4j
 
-Test
+https://github.com/AndreyVedishchev/job4j
+Хочу стать андройд разработчиком до конца лета.
