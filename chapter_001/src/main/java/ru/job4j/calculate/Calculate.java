@@ -2,8 +2,8 @@ package ru.job4j.calculate;
 
 /**
  * Class Класс для вычисления арифметических операций + - / *
- * @autor Andrey Vedishchev
- * @sience 17.05.2019
+ * @author Andrey Vedishchev
+ * @since 17.05.2019
  * @version 1
  */
 
