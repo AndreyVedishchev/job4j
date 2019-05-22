@@ -33,7 +33,6 @@ public class Triangle {
         if (period(a, c, b) > 0) {
             return true;
         }
-
         return false;
     }
 
