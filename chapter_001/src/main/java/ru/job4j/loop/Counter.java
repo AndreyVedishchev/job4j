@@ -5,7 +5,6 @@ package ru.job4j.loop;
  */
 public class Counter {
 
-
     /**
      * add
      * @param start - стартовое число
