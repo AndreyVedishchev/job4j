@@ -13,9 +13,8 @@ import static org.junit.Assert.*;
 public class PaintTest {
     @Test
     public void whenPyramid4Right() {
-        /*Paint paint = new Paint();
+        Paint paint = new Paint();
         String rst = paint.rightTrl(4);
-        System.out.println(rst);
         assertThat(rst,
                 is(
                         new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
@@ -25,6 +24,6 @@ public class PaintTest {
                                 .add("^^^^")
                                 .toString()
                 )
-        );*/
+        );
     }
 }
