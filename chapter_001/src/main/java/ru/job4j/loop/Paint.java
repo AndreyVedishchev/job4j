@@ -12,6 +12,7 @@ public class Paint {
      * @param height - ввод высоты пирамиды
      * @return рисунок
      */
+    
     public String rightTrl(int height) {
         // Буфер для результата.
         StringBuilder screen = new StringBuilder();
