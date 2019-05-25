@@ -34,5 +34,6 @@ public class Paint {
         }
         // Получаем результат.
         return screen.toString();
+
     }
 }
