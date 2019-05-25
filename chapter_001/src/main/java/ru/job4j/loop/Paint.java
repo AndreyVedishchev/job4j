@@ -10,9 +10,8 @@ public class Paint {
     /**
      * rightTrl
      * @param height - ввод высоты пирамиды
-     * @return рисунок
+     * @return рисунок правой части
      */
-    
     public String rightTrl(int height) {
         // Буфер для результата.
         StringBuilder screen = new StringBuilder();
@@ -34,6 +33,48 @@ public class Paint {
             screen.append(System.lineSeparator());
         }
         // Получаем результат.
+        return screen.toString();
+    }
+
+    /**
+     * leftTrl
+     * @param height - ввод высоты пирамиды
+     * @return рисунок левой части
+     */
+    public String leftTrl(int height) {
+        StringBuilder screen = new StringBuilder();
+        int width = height;
+        for (int row = 0; row != height; row++) {
+            for (int column = 0; column != width; column++) {
+                if (row >= width- column - 1) {
+                    screen.append("^");
+                } else {
+                    screen.append(" ");
+                }
+            }
+            screen.append(System.lineSeparator());
+        }
+        return screen.toString();
+    }
+
+    /**
+     * pyramid
+     * @param height - ввод высоты пирамиды
+     * @return рисунок цеолой пирамиды
+     */
+    public String pyramid(int height) {
+        StringBuilder screen = new StringBuilder();
+        int width= 2 * height - 1;
+        for (int row = 0; row != height; row++) {
+            for (int column = 0; column != width; column++) {
+                if (row >= height - column - 1 && row + height - 1 >= column) {
+                    screen.append("^");
+                } else {
+                    screen.append(" ");
+                }
+            }
+            screen.append(System.lineSeparator());
+        }
         return screen.toString();
     }
 }
