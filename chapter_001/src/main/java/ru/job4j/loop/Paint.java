@@ -12,7 +12,7 @@ public class Paint {
      * @param height - ввод высоты пирамиды
      * @return рисунок
      */
-    public String rightTrl(int height) {
+    public void rightTrl(int height) {
         // Буфер для результата.
         StringBuilder screen = new StringBuilder();
         // ширина будет равна высоте.
@@ -33,6 +33,12 @@ public class Paint {
             screen.append(System.lineSeparator());
         }
         // Получаем результат.
-        return screen.toString();
+        //return screen.toString();
+        System.out.println(screen);
+    }
+
+    public static void main(String[] args) {
+        Paint p = new Paint();
+        p.rightTrl(6);
     }
 }
