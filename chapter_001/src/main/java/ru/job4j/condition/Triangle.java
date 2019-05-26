@@ -30,10 +30,7 @@ public class Triangle {
      */
     private boolean exist(double a, double c, double b) {
 
-        if (period(a, c, b) > 0) {
-            return true;
-        }
-        return false;
+        return (a < b + c) && (b < a + c) && (c < a + b);
     }
 
     /**
@@ -58,5 +55,10 @@ public class Triangle {
             rsl = Math.sqrt(p *(p - a) * (p - b) * (p - c));
         }
         return rsl;
+    }
+
+    public static void main(String[] args) {
+        Triangle t = new Triangle();
+        System.out.println(t.exist(6, 4, 2));
     }
 }
