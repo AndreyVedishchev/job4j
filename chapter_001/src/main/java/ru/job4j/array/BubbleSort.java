@@ -1,8 +1,15 @@
 package ru.job4j.array;
 
-import java.util.Arrays;
-
+/**
+ * реализация сортировки пузырьком
+ */
 public class BubbleSort {
+
+    /**
+     * sort
+     * @param arr - входной массив
+     * @return отсортированный массив
+     */
     public int[] sort (int[] arr) {
         for (int i = arr.length - 1; i > 0; i--) {
             for (int j = 0; j < i; j++) {
@@ -14,11 +21,5 @@ public class BubbleSort {
             }
         }
         return arr;
-    }
-
-    public static void main(String[] args) {
-        int []arr = {5,8,3,0,23,7};
-        BubbleSort b = new BubbleSort();
-        System.out.println(Arrays.toString(b.sort(arr)));
     }
 }
