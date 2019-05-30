@@ -13,19 +13,21 @@ public class ArrayDuplicate {
      * @return - массив без повторов
      */
     public String[] remove(String[] array) {
-        int cut, temp = array.length - 1;
+        int temp = 0;
         for (int i = 0; i < array.length; i++) {
-            for (int j = i + 1; j < array.length; j++) {
+            for (int j = i + 1; j < array.length - temp; j++) {
                 if (array[i].equals(array[j])) {
-                    String t = array[j];
-                    array[j] = array[temp];
-                    array[temp] = t;
-                    temp--;
-                    break;
+                    while (j != array.length - temp - 1
+                                && array[array.length - temp - 1].equals(array[j])) {
+                        temp++;
+                    }
+                    String t = array[array.length - temp - 1];
+                    array[array.length - temp - 1] = array[j];
+                    array[j] = t;
+                    temp++;
                 }
             }
         }
-        cut = array.length - temp;
-        return Arrays.copyOf(array, cut);
+        return Arrays.copyOf(array, array.length - temp);
     }
 }
