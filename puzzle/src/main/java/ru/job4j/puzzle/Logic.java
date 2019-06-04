@@ -66,7 +66,7 @@ public class Logic {
         return rst;
     }
 
-    public boolean isWin() {
+    /*public boolean isWin() {
         int[][] table = this.convert();
         boolean result = false;
         int cnt1 = 0, cnt2 = 0;
@@ -89,6 +89,30 @@ public class Logic {
             result = true;
         }
 
+        return result;
+    }*/
+
+    public boolean isWin() {
+        int[][] table = this.convert();
+        boolean result = false;
+        for (int i = 0; i < table.length; i++) {
+            if (table[i][i] == 1) {
+                int cnt1 = 0, cnt2 = 0;
+                for (int j = 0; j < table.length; j++) {
+                    if (table[i][j] == 1) {
+                        cnt1++;
+                    }
+
+                    if (table[j][i] == 1) {
+                        cnt2++;
+                    }
+                }
+                if (cnt1 == table.length || cnt2 == table.length) {
+                    result = true;
+                    break;
+                }
+            }
+        }
         return result;
     }
 
