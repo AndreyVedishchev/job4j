@@ -1,22 +1,32 @@
 package ru.job4j.condition;
 
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
+
 /**
  * Рассчет расстояния методу точками в системе координат.
  */
 
 public class Point {
 
+    private int x;
+    private int y;
+
     /**
-     * distance
-     * @param x1
-     * @param y1
-     * @param x2
-     * @param y2
-     * @return расстояние
+     * Конструктор, который принимает начальное состояние объекта "точка"
+     * @param first координата x
+     * @param second координата y
      */
-    public double distance(int x1, int y1, int x2, int y2) {
-        double first = Math.pow(x2 - x1, 2);
-        double second = Math.pow(y2 - y1, 2);
-        return Math.sqrt(first + second);
+    public Point(int first, int second) {
+        this.x = first;
+        this.y = second;
+    }
+
+    public double distance(Point that) {
+        return sqrt(pow(this.x - that.x, 2) + pow(this.y - that.y, 2));
+    }
+
+    public void info() {
+        System.out.println(String.format("Point[%s, %s]", this.x, this.y));
     }
 }
