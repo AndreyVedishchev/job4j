@@ -7,12 +7,22 @@ public class Max {
 
     /**
      * max
-     * @param left - 1число
-     * @param right - 2число
+     * @param first - 1число
+     * @param second - 2число
      * @return максимальное число
      */
-    public int max(int left, int right) {
-        int result = left > right ? left : right;
+    public int max(int first, int second) {
+        int result = first > second ? first : second;
+        return result;
+    }
+
+    public int max(int first, int second, int third) {
+        int result = first > second ? first : second;
+        return result = third > max(first, second) ? third : max(first, second);
+    }
+
+    public int max(int first, int second, int third, int fourth) {
+        int result = fourth > max(first, second, third) ? fourth : max(first, second, third);
         return result;
     }
 }

@@ -25,4 +25,18 @@ public class MaxTest {
         int result = max.max(2, 2);
         assertThat(result, is(2));
     }
+
+    @Test
+    public void when3Elem2Max() {
+        Max max = new Max();
+        int result = max.max(2, 5, 4);
+        assertThat(result, is(5));
+    }
+
+    @Test
+    public void when4Elem4Max() {
+        Max max = new Max();
+        int result = max.max(2, 5, 4,7);
+        assertThat(result, is(7));
+    }
 }
