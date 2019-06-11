@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -38,69 +39,40 @@ public class Tracker {
     }
 
     public boolean replace(String id, Item item) {
-        if (findById(id) != null) {
-            findById(id).setTime(item.getTime());
-            findById(id).setDecs(item.getDecs());
-            findById(id).setName(item.getName());
-            return true;
+        for (int i = 0; i < items.length; i++) {
+            if (items[i].getId().equals(id)) {
+                items[i] = item;
+                return true;
+            }
         }
         return false;
     }
 
     public boolean delete(String id) {
-    boolean res = false;
     int counter = 0;
-
         for (int i = 0; i < items.length; i++) {
-           if (!items[i].getId().equals(id)) {
-               counter++;
-           } else {
-               items[i] = null;
-               System.out.println(items[i]);
-               break;
-           } res = true;
+            counter++;
+            if (items[i].getId().equals(id)) {
+                System.arraycopy(items, i + 1, items, i, items.length - counter - 1);
+                return true;
+            }
         }
-
-        Item []result = new Item[items.length - 1];
-        System.arraycopy(items, 0, result, 0, counter);
-        System.arraycopy(items, counter, result, counter, items.length - counter - 1);
-
-        return res;
+        return false ;
     }
 
     public Item[] findAll() {
-        int counter = 0;
-        for (Item element : items) {
-            if (element != null) {
-                counter++;
-            }
-        }
-
-        Item []arrayCopy = new Item[counter];
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null) {
-                arrayCopy[i] = items[i];
-            }
-        }
-        return arrayCopy;
+        return Arrays.copyOf(this.items, this.position);
     }
 
     public Item[] findByName(String key) {
-        Item []arrayCopy;
+        Item []arrayCopy = new Item[position];
         int counter = 0;
-        for (Item element : items) {
-            if (element.getName().equals(key)) {
-                counter++;
-            }
-        }
-
-        arrayCopy = new Item[counter];
         for (int i = 0; i < items.length; i++) {
-            if (items[i].getName().equals(key)) {
-                arrayCopy[i] = items[i];
+            if (items[i] != null && items[i].getName().equals(key)) {
+                arrayCopy[counter++] = items[i];
             }
         }
-        return arrayCopy;
+        return Arrays.copyOf(arrayCopy, counter);
     }
 
     public Item findById(String id) {

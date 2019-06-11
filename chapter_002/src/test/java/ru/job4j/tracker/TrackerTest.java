@@ -39,17 +39,9 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item first = new Item("test1","testDescription",123L);
         Item second = new Item("test2","testDescription2",1234L);
-        Item third = new Item("test3","testDescription3",12345L);
-        Item four = new Item("test4","testDescription4",1345L);
-        Item five = new Item("test5","testDescription5",1348L);
         tracker.add(first);
         tracker.add(second);
-        tracker.add(third);
-        tracker.add(four);
-        tracker.add(five);
-        System.out.println(third.getName());
-        tracker.delete(third.getId());
-        System.out.println(third.getName());
+        assertThat(tracker.delete(second.getId()), is(true));
     }
 
     @Test
@@ -69,10 +61,10 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item first = new Item("test1","testDescription",123L);
         Item second = new Item("test2","testDescription2",1234L);
-        Item third = new Item("test3","testDescription3",12345L);
+        Item third = new Item("test2","testDescription3",12345L);
         tracker.add(first);
         tracker.add(second);
         tracker.add(third);
-        System.out.println(Arrays.toString(tracker.findByName("test2")));
+        assertThat(tracker.findByName(second.getName()).length, is(2));
     }
 }
