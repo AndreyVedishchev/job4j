@@ -50,10 +50,11 @@ public class Tracker {
 
     public boolean delete(String id) {
     int counter = 0;
-        for (int i = 0; i < items.length; i++) {
+        for (int i = 0; i < position; i++) {
             counter++;
             if (items[i].getId().equals(id)) {
                 System.arraycopy(items, i + 1, items, i, items.length - counter - 1);
+                position--;
                 return true;
             }
         }
