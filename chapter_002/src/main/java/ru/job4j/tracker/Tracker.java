@@ -39,7 +39,7 @@ public class Tracker {
     }
 
     public boolean replace(String id, Item item) {
-        for (int i = 0; i < items.length; i++) {
+        for (int i = 0; i < position; i++) {
             if (items[i].getId().equals(id)) {
                 items[i] = item;
                 return true;
@@ -68,7 +68,7 @@ public class Tracker {
     public Item[] findByName(String key) {
         Item []arrayCopy = new Item[position];
         int counter = 0;
-        for (int i = 0; i < items.length; i++) {
+        for (int i = 0; i < position; i++) {
             if (items[i] != null && items[i].getName().equals(key)) {
                 arrayCopy[counter++] = items[i];
             }
