@@ -106,8 +106,7 @@ public class StartUI {
     private void showItems() {
         Item []arr = this.tracker.findAll();
         for (int i = 0; i < arr.length; i++) {
-            System.out.println("Заявка №" + (i + 1) + " ****** id" + arr[i].getId() + ", имя -> " + arr[i].getName()
-                    + ", описание -> " + arr[i].getDecs() + ", время создания -> " + arr[i].getTime());
+            System.out.println("Заявка №" + (i + 1) + " ****** " + arr[i].toString());
         }
     }
 
@@ -115,14 +114,14 @@ public class StartUI {
      * Метод вызова редактирования
      */
     private void elementEdit() {
-        String id, newId = null;
-        try {
-            System.out.println("------------ Редактирование заявки --------------");
-            id = this.input.ask("Введите id заявки для замены:");
-            newId = this.input.ask("Введите id новой заявки:");
-            this.tracker.replace(id, this.tracker.findById(newId));
+        System.out.println("------------ Редактирование заявки --------------");
+        String id = this.input.ask("Введите id заявки для замены:");
+        String newId = this.input.ask("Введите id новой заявки:");
+        Item item = this.tracker.findById(newId);
+        if (item != null) {
+            this.tracker.replace(id, item);
             System.out.println("---------- Заявка заменена на " + newId + " ----------");
-        } catch (NullPointerException e) {
+        } else {
             System.out.println("--------- Заявка с id " + newId + " не заведена --------");
         }
     }
@@ -131,14 +130,11 @@ public class StartUI {
      * Метод вызова удаления
      */
     private void elementDelete() {
-        String id = null;
-        try {
-            System.out.println("------------ Удаление заявки --------------");
-            id = this.input.ask("Введите id заявки для удаления:");
-            this.tracker.findById(id);
-            this.tracker.delete(id);
+        System.out.println("------------ Удаление заявки --------------");
+        String id = this.input.ask("Введите id заявки для удаления:");
+        if(this.tracker.delete(id)) {
             System.out.println("--------- Заявка с id " + id + " удалена --------");
-        } catch (NullPointerException e) {
+        } else {
             System.out.println("--------- Заявка с id " + id + " не заведена --------");
         }
     }
@@ -147,14 +143,12 @@ public class StartUI {
      * Метод вызова поиска по id
      */
     private void elementFindById() {
-        String id = null;
-        try {
-            System.out.println("------------ Поиск заявки id --------------");
-            id = this.input.ask("Введите id заявки:");
-            Item item = this.tracker.findById(id);
-            System.out.println("id " + item.getId() + ", имя -> " + item.getName()
-                    + ", описание -> " + item.getDecs() + ", время создания -> " + item.getTime());
-        } catch (NullPointerException e) {
+        System.out.println("------------ Поиск заявки id --------------");
+        String id = this.input.ask("Введите id заявки:");
+        Item item = this.tracker.findById(id);
+        if (item != null) {
+            System.out.println(item.toString());
+        } else {
             System.out.println("--------- Заявка с id " + id + " не заведена --------");
         }
     }
@@ -167,8 +161,7 @@ public class StartUI {
         String name = this.input.ask("Введите имя заявки:");
         Item []item = this.tracker.findByName(name);
         for (int i = 0; i < item.length; i++) {
-            System.out.println("id " + item[i].getId() + ", имя -> " + item[i].getName()
-                    + ", описание -> " + item[i].getDecs() + ", время создания -> " + item[i].getTime());
+            System.out.println(item[i].toString());
         }
 
         if (item.length < 1) {

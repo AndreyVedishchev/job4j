@@ -61,4 +61,12 @@ public class Item {
     public int hashCode() {
         return Objects.hash(id, name, decs, time);
     }
+
+    @Override
+    public String toString() {
+        return  "id -> '" + this.getId() + '\'' +
+                ", имя -> '" + this.getName() + '\'' +
+                ", описание -> '" + this.getDecs() + '\'' +
+                ", время создания -> " + this.getTime();
+    }
 }
