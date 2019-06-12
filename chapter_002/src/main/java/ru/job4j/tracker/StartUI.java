@@ -104,7 +104,7 @@ public class StartUI {
      * Метод отображает заведенные заявки
      */
     private void showItems() {
-        Item []arr = this.tracker.findAll();
+        Item[] arr = this.tracker.findAll();
         for (int i = 0; i < arr.length; i++) {
             System.out.println("Заявка №" + (i + 1) + " ****** " + arr[i].toString());
         }
@@ -132,7 +132,7 @@ public class StartUI {
     private void elementDelete() {
         System.out.println("------------ Удаление заявки --------------");
         String id = this.input.ask("Введите id заявки для удаления:");
-        if(this.tracker.delete(id)) {
+        if (this.tracker.delete(id)) {
             System.out.println("--------- Заявка с id " + id + " удалена --------");
         } else {
             System.out.println("--------- Заявка с id " + id + " не заведена --------");
@@ -159,7 +159,7 @@ public class StartUI {
     private void elementFindByName() {
         System.out.println("------------ Поиск заявки имени --------------");
         String name = this.input.ask("Введите имя заявки:");
-        Item []item = this.tracker.findByName(name);
+        Item[] item = this.tracker.findByName(name);
         for (int i = 0; i < item.length; i++) {
             System.out.println(item[i].toString());
         }

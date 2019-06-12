@@ -48,13 +48,17 @@ public class Item {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Item item = (Item) o;
-        return time == item.time &&
-                Objects.equals(id, item.id) &&
-                Objects.equals(name, item.name) &&
-                Objects.equals(decs, item.decs);
+        return time == item.time
+                && Objects.equals(id, item.id)
+                && Objects.equals(name, item.name)
+                && Objects.equals(decs, item.decs);
     }
 
     @Override
@@ -64,9 +68,9 @@ public class Item {
 
     @Override
     public String toString() {
-        return  "id -> '" + this.getId() + '\'' +
-                ", имя -> '" + this.getName() + '\'' +
-                ", описание -> '" + this.getDecs() + '\'' +
-                ", время создания -> " + this.getTime();
+        return  "id -> '" + this.getId() + '\''
+                + ", имя -> '" + this.getName() + '\''
+                + ", описание -> '" + this.getDecs() + '\''
+                + ", время создания -> " + this.getTime();
     }
 }

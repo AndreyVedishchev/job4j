@@ -10,7 +10,7 @@ public class Profession {
         this.birthday = birthday;
     }
 
-    public Profession () {
+    public Profession() {
 
     }
 

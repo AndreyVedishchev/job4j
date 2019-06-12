@@ -58,7 +58,7 @@ public class Tracker {
                 return true;
             }
         }
-        return false ;
+        return false;
     }
 
     public Item[] findAll() {
@@ -66,7 +66,7 @@ public class Tracker {
     }
 
     public Item[] findByName(String key) {
-        Item []arrayCopy = new Item[position];
+        Item[] arrayCopy = new Item[position];
         int counter = 0;
         for (int i = 0; i < position; i++) {
             if (items[i] != null && items[i].getName().equals(key)) {
