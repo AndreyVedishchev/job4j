@@ -143,7 +143,7 @@ public class StartUI {
      * Метод вызова поиска по id
      */
     private void elementFindById() {
-        System.out.println("------------ Поиск заявки id --------------");
+        System.out.println("------------ Поиск заявки по id --------------");
         String id = this.input.ask("Введите id заявки:");
         Item item = this.tracker.findById(id);
         if (item != null) {
