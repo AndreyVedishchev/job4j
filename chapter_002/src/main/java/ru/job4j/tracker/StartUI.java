@@ -103,7 +103,7 @@ public class StartUI {
     /**
      * Метод отображает заведенные заявки
      */
-    private void showItems() {
+    void showItems() {
         Item[] arr = this.tracker.findAll();
         for (int i = 0; i < arr.length; i++) {
             System.out.println("Заявка №" + (i + 1) + " ****** " + arr[i].toString());
