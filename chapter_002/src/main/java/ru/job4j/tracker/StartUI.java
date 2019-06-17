@@ -52,6 +52,19 @@ public class StartUI {
     private final Tracker tracker;
 
     /**
+     * Отображение пунктов меню.
+     */
+    public final StringBuilder showMenu = new StringBuilder()
+            .append("Меню.\r\n")
+            .append("0. Add new Item\r\n")
+            .append("1. Show all items\r\n")
+            .append("2. Edit item\r\n")
+            .append("3. Delete item\r\n")
+            .append("4. Find item by Id\r\n")
+            .append("5. Find items by name\r\n")
+            .append("6. Exit Program");
+
+    /**
      * Конструтор инициализирующий поля.
      * @param input ввод данных.
      * @param tracker хранилище заявок.
@@ -67,7 +80,8 @@ public class StartUI {
     public void init() {
         boolean exit = false;
         while (!exit) {
-            this.showMenu();
+            //this.showMenu();
+            System.out.println(this.showMenu);
             String answer = this.input.ask("Введите пункт меню : ");
             if (ADD.equals(answer)) {
                 this.createItem();
@@ -103,7 +117,7 @@ public class StartUI {
     /**
      * Метод отображает заведенные заявки
      */
-    void showItems() {
+    private void showItems() {
         Item[] arr = this.tracker.findAll();
         for (int i = 0; i < arr.length; i++) {
             System.out.println("Заявка №" + (i + 1) + " ****** " + arr[i].toString());
@@ -172,7 +186,7 @@ public class StartUI {
     /**
      * Метод отображения пунктов меню
      */
-    private void showMenu() {
+    /*private void showMenu() {
         System.out.println("Меню.");
         System.out.println("0. Add new Item");
         System.out.println("1. Show all items");
@@ -181,7 +195,7 @@ public class StartUI {
         System.out.println("4. Find item by Id");
         System.out.println("5. Find items by name");
         System.out.println("6. Exit Program");
-    }
+    }*/
 
     /**
      * Запускт программы.

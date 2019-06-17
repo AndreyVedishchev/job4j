@@ -82,9 +82,10 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc", currentTimeMillis()));
         Input input = new StubInput(new String[]{"1", "6"});
-        new StartUI(input, tracker).showItems();
+        StartUI startUI = new StartUI(input, tracker);
+        startUI.init();
         assertThat(this.out.toString(),
-                is("Заявка №1 ****** " + item.toString() + "\r\n")
+                is(startUI.showMenu + "\r\n" + "Заявка №1 ****** " + item.toString() + "\r\n" + startUI.showMenu + "\r\n")
         );
     }
 
