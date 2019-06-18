@@ -55,13 +55,20 @@ public class StartUI {
      * Отображение пунктов меню.
      */
     public final StringBuilder showMenu = new StringBuilder()
-            .append("Меню.\r\n")
-            .append("0. Add new Item\r\n")
-            .append("1. Show all items\r\n")
-            .append("2. Edit item\r\n")
-            .append("3. Delete item\r\n")
-            .append("4. Find item by Id\r\n")
-            .append("5. Find items by name\r\n")
+            .append("Меню.")
+            .append(System.lineSeparator())
+            .append("0. Add new Item")
+            .append(System.lineSeparator())
+            .append("1. Show all items")
+            .append(System.lineSeparator())
+            .append("2. Edit item")
+            .append(System.lineSeparator())
+            .append("3. Delete item")
+            .append(System.lineSeparator())
+            .append("4. Find item by Id")
+            .append(System.lineSeparator())
+            .append("5. Find items by name")
+            .append(System.lineSeparator())
             .append("6. Exit Program");
 
     /**
