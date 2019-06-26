@@ -85,7 +85,7 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            for (Item item : tracker) {
+            for (Item item : tracker.findAll()) {
                 System.out.println(
                         String.format("%s. %s", item.getId(), item.getName())
                 );
