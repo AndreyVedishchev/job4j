@@ -85,8 +85,18 @@ public class StartUI {
      * Основой цикл программы.
      */
     public void init() {
-        boolean exit = false;
-        while (!exit) {
+        //boolean exit = false;
+
+        Tracker tracker = new Tracker();
+        MenuTracker menu = new MenuTracker(this.input, tracker);
+        menu.fillActions();
+
+        do {
+            menu.show();
+            int key = Integer.valueOf(input.ask("Select:"));
+            menu.select(key);
+        } While(!"y".equals(this.input.ask("Exit?(y):")));
+        /*while (!exit) {
             //this.showMenu();
             System.out.println(this.showMenu);
             String answer = this.input.ask("Введите пункт меню : ");
@@ -105,7 +115,7 @@ public class StartUI {
             } else if (EXIT.equals(answer)) {
                 exit = true;
             }
-        }
+        }*/
     }
 
     /**

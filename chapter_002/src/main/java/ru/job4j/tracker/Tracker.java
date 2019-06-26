@@ -61,6 +61,16 @@ public class Tracker {
         return false;
     }
 
+    public void edit(Item fresh) {
+        for (int index = 0; index != items.length; ++index) {
+            Item item = items[index];
+            if (item.getId().equals(fresh.getId())) {
+                items[index] = fresh;
+                break;
+            }
+        }
+    }
+
     public Item[] findAll() {
         return Arrays.copyOf(this.items, this.position);
     }
