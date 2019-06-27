@@ -7,40 +7,42 @@ import static java.lang.System.currentTimeMillis;
  * @since 0.1
  */
 public class StartUI {
+    public static boolean exit;
+
     /**
      * Константа меню для добавления новой заявки.
      */
-    private static final String ADD = "0";
+    //private static final String ADD = "0";
 
     /**
      * Константа для отображения всех заявок.
      */
-    private static final String SHOW_ALL = "1";
+    //private static final String SHOW_ALL = "1";
 
     /**
      * Константа для редактирования заявки.
      */
-    private static final String EDIT = "2";
+    //private static final String EDIT = "2";
 
     /**
      * Константа для удаления заявки.
      */
-    private static final String DELETE = "3";
+    //private static final String DELETE = "3";
 
     /**
      * Константа для поиска заявки по id.
      */
-    private static final String FIND_BY_ID = "4";
+    //private static final String FIND_BY_ID = "4";
 
     /**
      * Константа для поиска заявки по имени.
      */
-    private static final String FIND_BY_NAME = "5";
+    //private static final String FIND_BY_NAME = "5";
 
     /**
      * Константа для выхода из цикла.
      */
-    private static final String EXIT = "6";
+    //private static final String EXIT = "6";
     /**
      * Получение данных от пользователя.
      */
@@ -85,17 +87,17 @@ public class StartUI {
      * Основой цикл программы.
      */
     public void init() {
-        //boolean exit = false;
-
+        exit = true;
         Tracker tracker = new Tracker();
         MenuTracker menu = new MenuTracker(this.input, tracker);
         menu.fillActions();
-
         do {
             menu.show();
             int key = Integer.valueOf(input.ask("Select:"));
+            //exit = (!"y".equals(this.input.ask("Exit?(y):")));
             menu.select(key);
-        } While(!"y".equals(this.input.ask("Exit?(y):")));
+        } while(exit);
+
         /*while (!exit) {
             //this.showMenu();
             System.out.println(this.showMenu);
@@ -121,7 +123,7 @@ public class StartUI {
     /**
      * Метод реализует добавленяи новый заявки в хранилище.
      */
-    private void createItem() {
+    /*private void createItem() {
         System.out.println("------------ Добавление новой заявки --------------");
         String name = this.input.ask("Введите имя заявки :");
         String desc = this.input.ask("Введите описание заявки :");
@@ -129,22 +131,22 @@ public class StartUI {
         Item item = new Item(name, desc, time);
         this.tracker.add(item);
         System.out.println("------------ Новая заявка с id : " + item.getId() + " -----------");
-    }
+    }*/
 
     /**
      * Метод отображает заведенные заявки
      */
-    private void showItems() {
+    /*private void showItems() {
         Item[] arr = this.tracker.findAll();
         for (int i = 0; i < arr.length; i++) {
             System.out.println("Заявка №" + (i + 1) + " ****** " + arr[i].toString());
         }
-    }
+    }*/
 
     /**
      * Метод вызова редактирования
      */
-    private void elementEdit() {
+    /*private void elementEdit() {
         System.out.println("------------ Редактирование заявки --------------");
         String id = this.input.ask("Введите id заявки для замены:");
         String newId = this.input.ask("Введите id новой заявки:");
@@ -155,12 +157,12 @@ public class StartUI {
         } else {
             System.out.println("--------- Заявка с id " + newId + " не заведена --------");
         }
-    }
+    }*/
 
     /**
      * Метод вызова удаления
      */
-    private void elementDelete() {
+    /*private void elementDelete() {
         System.out.println("------------ Удаление заявки --------------");
         String id = this.input.ask("Введите id заявки для удаления:");
         if (this.tracker.delete(id)) {
@@ -168,12 +170,12 @@ public class StartUI {
         } else {
             System.out.println("--------- Заявка с id " + id + " не заведена --------");
         }
-    }
+    }*/
 
     /**
      * Метод вызова поиска по id
      */
-    private void elementFindById() {
+    /*private void elementFindById() {
         System.out.println("------------ Поиск заявки по id --------------");
         String id = this.input.ask("Введите id заявки:");
         Item item = this.tracker.findById(id);
@@ -182,12 +184,12 @@ public class StartUI {
         } else {
             System.out.println("--------- Заявка с id " + id + " не заведена --------");
         }
-    }
+    }*/
 
     /**
      * Метод вызова поиска по имени
      */
-    private void elementFindByName() {
+    /*private void elementFindByName() {
         System.out.println("------------ Поиск заявки имени --------------");
         String name = this.input.ask("Введите имя заявки:");
         Item[] item = this.tracker.findByName(name);
@@ -198,20 +200,6 @@ public class StartUI {
         if (item.length < 1) {
             System.out.println("--------- Заявка с именем " + name + " не заведена --------");
         }
-    }
-
-    /**
-     * Метод отображения пунктов меню
-     */
-    /*private void showMenu() {
-        System.out.println("Меню.");
-        System.out.println("0. Add new Item");
-        System.out.println("1. Show all items");
-        System.out.println("2. Edit item");
-        System.out.println("3. Delete item");
-        System.out.println("4. Find item by Id");
-        System.out.println("5. Find items by name");
-        System.out.println("6. Exit Program");
     }*/
 
     /**
