@@ -12,6 +12,10 @@ public class MenuTracker {
         this.tracker = tracker;
     }
 
+    public UserAction[] getActions() {
+        return actions;
+    }
+
     public void fillActions() {
         this.actions[0] = new MenuTracker.AddItem();
         this.actions[1] = new MenuTracker.ShowItems();
@@ -91,9 +95,6 @@ public class MenuTracker {
             item.setId(id);
             tracker.edit(item);
         }
-
-        /*public void edit(Item item) {
-        }*/
 
         @Override
         public String info() {
