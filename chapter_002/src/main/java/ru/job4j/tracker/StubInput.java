@@ -40,8 +40,10 @@ public class StubInput implements Input {
     @Override
     public int ask(String question, List<Integer> ranges) throws MenuOutException {
         int res = 0;
+        Integer writeUser = Integer.parseInt(this.ask(question));
+
         for (Integer range : ranges) {
-            if (this.ask(question).equals(range)) {
+            if (writeUser.equals(range)) {
                 res = range;
             }
         }

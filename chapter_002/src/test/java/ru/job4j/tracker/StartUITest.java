@@ -3,8 +3,12 @@ package ru.job4j.tracker;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
+
 import static java.lang.System.currentTimeMillis;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -30,6 +34,23 @@ public class StartUITest {
     public void backOutput() {
         System.setOut(this.stdout);
         System.out.println("execute after method");
+    }
+
+    @Test
+    public void whenInvalidInput() {
+        List<Integer> ranges = new ArrayList<>();
+        ranges.add(0);
+        ranges.add(1);
+        ValidateInput input = new ValidateInput(
+                new StubInput(new String[] {"invalid", "1"})
+        );
+        input.ask("Enter", ranges);
+        assertThat(
+                this.out.toString(),
+                is(
+                        String.format("Введите корректные данные.%n")
+                )
+        );
     }
 
     @Test
@@ -79,13 +100,29 @@ public class StartUITest {
 
     @Test
     public void whenShowItems() {
+        String menu = new StringBuilder()
+                        .append("0. Добавление новой заявки.")
+                        .append(System.lineSeparator())
+                        .append("1. Показать все заявки.")
+                        .append(System.lineSeparator())
+                        .append("2. Редактирование заявки.")
+                        .append(System.lineSeparator())
+                        .append("3. Удаление заявки.")
+                        .append(System.lineSeparator())
+                        .append("4. Поиск заявки по id.")
+                        .append(System.lineSeparator())
+                        .append("5. Поиск заявки по Имени.")
+                        .append(System.lineSeparator())
+                        .append("6. Выход из программы.")
+                        .append(System.lineSeparator())
+                        .toString();
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc", currentTimeMillis()));
         Input input = new StubInput(new String[]{"1", "6"});
         StartUI startUI = new StartUI(input, tracker);
         startUI.init();
         assertThat(this.out.toString(),
-                is(startUI.showMenu + "\r\n" + "Заявка №1 ****** " + item.toString() + "\r\n" + startUI.showMenu + "\r\n")
+                is(menu + item.getId() + ". " + item.getName() + "\r\n" + menu)
         );
     }
 
@@ -97,21 +134,19 @@ public class StartUITest {
         assertThat(this.out.toString(),
                 is(
                         new StringBuilder()
-                                .append("Меню.")
+                                .append("0. Добавление новой заявки.")
                                 .append(System.lineSeparator())
-                                .append("0. Add new Item")
+                                .append("1. Показать все заявки.")
                                 .append(System.lineSeparator())
-                                .append("1. Show all items")
+                                .append("2. Редактирование заявки.")
                                 .append(System.lineSeparator())
-                                .append("2. Edit item")
+                                .append("3. Удаление заявки.")
                                 .append(System.lineSeparator())
-                                .append("3. Delete item")
+                                .append("4. Поиск заявки по id.")
                                 .append(System.lineSeparator())
-                                .append("4. Find item by Id")
+                                .append("5. Поиск заявки по Имени.")
                                 .append(System.lineSeparator())
-                                .append("5. Find items by name")
-                                .append(System.lineSeparator())
-                                .append("6. Exit Program")
+                                .append("6. Выход из программы.")
                                 .append(System.lineSeparator())
                                 .toString()
                 )

@@ -21,27 +21,6 @@ public class StartUI {
     private final Tracker tracker;
 
     /**
-     * Отображение пунктов меню.
-     */
-    public final StringBuilder showMenu = new StringBuilder()
-            .append("Меню.")
-            .append(System.lineSeparator())
-            .append("0. Add new Item")
-            .append(System.lineSeparator())
-            .append("1. Show all items")
-            .append(System.lineSeparator())
-            .append("2. Edit item")
-            .append(System.lineSeparator())
-            .append("3. Delete item")
-            .append(System.lineSeparator())
-            .append("4. Find item by Id")
-            .append(System.lineSeparator())
-            .append("5. Find items by name")
-            .append(System.lineSeparator())
-            .append("6. Exit Program");
-
-
-    /**
      * Конструтор инициализирующий поля.
      * @param input ввод данных.
      * @param tracker хранилище заявок.
@@ -56,7 +35,6 @@ public class StartUI {
      */
     public void init() {
         exit = true;
-        //Tracker tracker = new Tracker();
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         List<Integer> ranges = new ArrayList<>();
         menu.fillActions();
@@ -66,7 +44,7 @@ public class StartUI {
         do {
             menu.show();
             menu.select(input.ask("Select:", ranges));
-        } while(exit);
+        } while (exit);
     }
 
     /**
@@ -74,6 +52,6 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ValidateInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init();
     }
 }
