@@ -65,8 +65,7 @@ public class StartUITest {
     public void whenUpdateThenTrackerHasUpdatedValue() {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc", currentTimeMillis()));
-        Item itemRepl = tracker.add(new Item("test replace", "desc repl", currentTimeMillis()));
-        Input input = new StubInput(new String[]{"2", item.getId(), itemRepl.getId(), "6"});
+        Input input = new StubInput(new String[]{"2", item.getId(), /*itemRepl.getId(),*/"test replace", "desc repl", "6"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll()[0].getName(), is("test replace"));
     }

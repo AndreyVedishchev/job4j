@@ -42,6 +42,7 @@ public class Tracker {
         for (int i = 0; i < position; i++) {
             if (items[i].getId().equals(id)) {
                 items[i] = item;
+                item.setId(id);
                 return true;
             }
         }
