@@ -49,4 +49,21 @@ public class ValidateInputTest {
                 )
         );
     }
+
+    @Test
+    public void whenInvalidInput1() {
+        List<Integer> ranges = new ArrayList<>();
+        ranges.add(0);
+        ranges.add(1);
+        ValidateInput input = new ValidateInput(
+                new StubInput(new String[] {"7", "1"})
+        );
+        input.ask("Enter", ranges);
+        assertThat(
+                this.mem.toString(),
+                is(
+                        String.format("Введите номер действия из меню.%n")
+                )
+        );
+    }
 }
