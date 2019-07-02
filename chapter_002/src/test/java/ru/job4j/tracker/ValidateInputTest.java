@@ -39,7 +39,7 @@ public class ValidateInputTest {
         ranges.add(0);
         ranges.add(1);
         ValidateInput input = new ValidateInput(
-                new StubInput(new String[] {"invalid", "1"})
+                new StubInput(new String[] {"invalid", "9"})
         );
         input.ask("Enter", ranges);
         assertThat(
@@ -56,13 +56,13 @@ public class ValidateInputTest {
         ranges.add(0);
         ranges.add(1);
         ValidateInput input = new ValidateInput(
-                new StubInput(new String[] {"invalid", "1"})
+                new StubInput(new String[] {"1", "9"})
         );
         input.ask("Enter", ranges);
         assertThat(
                 this.mem.toString(),
                 is(
-                        String.format("Введите номер действия из меню.%n")
+                        String.format("Введите номер действия из меню%n")
                 )
         );
     }

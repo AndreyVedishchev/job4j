@@ -39,13 +39,20 @@ public class StubInput implements Input {
 
     @Override
     public int ask(String question, List<Integer> ranges) throws MenuOutException {
+        boolean flag = false;
         int res = 0;
         Integer writeUser = Integer.parseInt(this.ask(question));
 
         for (Integer range : ranges) {
             if (writeUser.equals(range)) {
                 res = range;
-            } else throw new MenuOutException("Введите номер действия из меню.");
+                flag = true;
+                break;
+            }
+        }
+
+        if (flag) {
+            throw new MenuOutException("Введите номер действия из меню.");
         }
         return res;
     }
