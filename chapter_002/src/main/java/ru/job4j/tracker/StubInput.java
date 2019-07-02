@@ -45,7 +45,7 @@ public class StubInput implements Input {
         for (Integer range : ranges) {
             if (writeUser.equals(range)) {
                 res = range;
-            }
+            } else throw new MenuOutException("Введите номер действия из меню.");
         }
         return res;
     }
