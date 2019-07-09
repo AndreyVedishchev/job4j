@@ -1,5 +1,4 @@
 package ru.job4j.array;
-import java.util.Arrays;
 
 public class CombArr {
 
@@ -22,11 +21,5 @@ public class CombArr {
             i++;
         }
         return res;
-    }
-
-    public static void main(String[] args) {
-        int[] a = {1, 3};
-        int[] b = {2, 4};
-        System.out.println(Arrays.toString(merge(a, b)));
     }
 }
