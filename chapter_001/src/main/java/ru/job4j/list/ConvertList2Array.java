@@ -1,5 +1,9 @@
 package ru.job4j.list;
 
+import com.sun.javafx.binding.SelectBinding;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ConvertList2Array {
@@ -23,5 +27,16 @@ public class ConvertList2Array {
             coef += 2;
         }
         return array;
+    }
+
+    public List<Integer> convert(List<int[]> list) {
+        int index = 0;
+        List<Integer> listArr = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            for (int j = 0; j < list.get(i).length; j++) {
+                listArr.add(index++, list.get(i)[j]);
+            }
+        }
+        return listArr;
     }
 }
