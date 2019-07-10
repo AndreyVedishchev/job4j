@@ -1,18 +1,21 @@
 package ru.job4j.list;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ConvertMatrix2List {
     public List<Integer> toList(int[][] array) {
         List<Integer> list = new ArrayList<>();
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i].length; j++) {
-                list.add(i, array[i][j]);
+        int i = 0;
+        int j = 0;
+        for (int[] ints : array) {
+            for (int[] ints1 : array) {
+                list.add(array[i][j]);
+                j++;
             }
+            i++;
+            j = 0;
         }
-        Collections.sort(list);
         return list;
     }
 }
