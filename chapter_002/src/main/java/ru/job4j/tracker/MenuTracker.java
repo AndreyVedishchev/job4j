@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.System.currentTimeMillis;
 
@@ -8,7 +9,7 @@ public class MenuTracker {
     private Input input;
     private Tracker tracker;
     //private UserAction[] actions = new UserAction[7];
-    private ArrayList<UserAction> actions = new ArrayList<>();
+    private List<UserAction> actions = new ArrayList<>();
 
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
@@ -19,7 +20,7 @@ public class MenuTracker {
         return actions;
     }*/
 
-    public ArrayList<UserAction> getActions() {
+    public List<UserAction> getActions() {
         return actions;
     }
 
@@ -159,7 +160,7 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Поиск заявки имени --------------");
             String name = input.ask("Введите имя заявки:");
-            ArrayList<Item> item = tracker.findByName(name);
+            List<Item> item = tracker.findByName(name);
             for (int i = 0; i < item.size(); i++) {
                 System.out.println(item.get(i).toString());
             }
