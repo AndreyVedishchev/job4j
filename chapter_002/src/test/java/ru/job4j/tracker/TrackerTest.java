@@ -2,8 +2,6 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -53,7 +51,8 @@ public class TrackerTest {
         tracker.add(first);
         tracker.add(second);
         tracker.add(third);
-        assertThat(tracker.findAll().length, is(3));
+        //assertThat(tracker.findAll().length, is(3));
+        assertThat(tracker.findAll().size(), is(3));
     }
 
     @Test
@@ -65,6 +64,7 @@ public class TrackerTest {
         tracker.add(first);
         tracker.add(second);
         tracker.add(third);
-        assertThat(tracker.findByName(second.getName()).length, is(2));
+        //assertThat(tracker.findByName(second.getName()).length, is(2));
+        assertThat(tracker.findByName(second.getName()).size(), is(2));
     }
 }

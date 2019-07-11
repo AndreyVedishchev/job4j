@@ -1,22 +1,29 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+
 import static java.lang.System.currentTimeMillis;
 
 public class MenuTracker {
     private Input input;
     private Tracker tracker;
-    private UserAction[] actions = new UserAction[7];
+    //private UserAction[] actions = new UserAction[7];
+    private ArrayList<UserAction> actions = new ArrayList<>();
 
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
     }
 
-    public UserAction[] getActions() {
+    /*public UserAction[] getActions() {
+        return actions;
+    }*/
+
+    public ArrayList<UserAction> getActions() {
         return actions;
     }
 
-    public void fillActions() {
+    /*public void fillActions() {
         this.actions[0] = new MenuTracker.AddItem(0, "Добавление новой заявки.");
         this.actions[1] = new MenuTracker.ShowItems(1, "Показать все заявки.");
         this.actions[2] = new MenuTracker.EditItem(2, "Редактирование заявки.");
@@ -24,10 +31,22 @@ public class MenuTracker {
         this.actions[4] = new MenuTracker.FindItemById(4, "Поиск заявки по id.");
         this.actions[5] = new MenuTracker.FindItemByName(5, "Поиск заявки по Имени.");
         this.actions[6] = new MenuTracker.ExitProgramm(6, "Выход из программы.");
+    }*/
+
+    public void fillActions() {
+        this.actions.add(0, new MenuTracker.AddItem(0, "Добавление новой заявки."));
+        this.actions.add(1, new MenuTracker.ShowItems(1, "Показать все заявки."));
+        this.actions.add(2, new MenuTracker.EditItem(2, "Редактирование заявки."));
+        this.actions.add(3, new MenuTracker.DeleteItem(3, "Удаление заявки."));
+        this.actions.add(4, new MenuTracker.FindItemById(4, "Поиск заявки по id."));
+        this.actions.add(5, new MenuTracker.FindItemByName(5, "Поиск заявки по Имени."));
+        this.actions.add(6, new MenuTracker.ExitProgramm(6, "Выход из программы."));
     }
 
     public void select(int key) {
-        this.actions[key].execute(this.input, this.tracker);
+        //this.actions[key].execute(this.input, this.tracker);
+        this.actions.get(key).execute(this.input, this.tracker);
+
     }
 
     public void show() {
@@ -123,7 +142,7 @@ public class MenuTracker {
             super(key, name);
         }
 
-        @Override
+        /*@Override
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Поиск заявки имени --------------");
             String name = input.ask("Введите имя заявки:");
@@ -133,6 +152,19 @@ public class MenuTracker {
             }
 
             if (item.length < 1) {
+                System.out.println("--------- Заявка с именем " + name + " не заведена --------");
+            }
+        }*/
+        @Override
+        public void execute(Input input, Tracker tracker) {
+            System.out.println("------------ Поиск заявки имени --------------");
+            String name = input.ask("Введите имя заявки:");
+            ArrayList<Item> item = tracker.findByName(name);
+            for (int i = 0; i < item.size(); i++) {
+                System.out.println(item.get(i).toString());
+            }
+
+            if (item.size() < 1) {
                 System.out.println("--------- Заявка с именем " + name + " не заведена --------");
             }
         }
