@@ -8,7 +8,7 @@ import java.util.List;
  * @since 0.1
  */
 public class StartUI {
-    public static boolean exit;
+    private boolean exit;
 
     /**
      * Получение данных от пользователя.
@@ -37,14 +37,18 @@ public class StartUI {
         exit = true;
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         List<Integer> ranges = new ArrayList<>();
-        menu.fillActions();
+        menu.fillActions(this);
         for (int i = 0; i < menu.getActions().size(); i++) {
             ranges.add(i);
         }
         do {
             menu.show();
             menu.select(input.ask("Select:", ranges));
-        } while (exit);
+        } while (this.exit);
+    }
+
+    public void stop() {
+        this.exit = false;
     }
 
     /**

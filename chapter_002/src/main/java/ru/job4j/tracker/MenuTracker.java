@@ -34,14 +34,15 @@ public class MenuTracker {
         this.actions[6] = new MenuTracker.ExitProgramm(6, "Выход из программы.");
     }*/
 
-    public void fillActions() {
+    public void fillActions(StartUI ui) {
         this.actions.add(0, new MenuTracker.AddItem(0, "Добавление новой заявки."));
         this.actions.add(1, new MenuTracker.ShowItems(1, "Показать все заявки."));
         this.actions.add(2, new MenuTracker.EditItem(2, "Редактирование заявки."));
         this.actions.add(3, new MenuTracker.DeleteItem(3, "Удаление заявки."));
         this.actions.add(4, new MenuTracker.FindItemById(4, "Поиск заявки по id."));
         this.actions.add(5, new MenuTracker.FindItemByName(5, "Поиск заявки по Имени."));
-        this.actions.add(6, new MenuTracker.ExitProgramm(6, "Выход из программы."));
+        //this.actions.add(6, new MenuTracker.ExitProgramm(6, "Выход из программы."));
+        this.actions.add(6, new Exit(ui));
     }
 
     public void select(int key) {
@@ -171,14 +172,16 @@ public class MenuTracker {
         }
     }
 
-    private static class ExitProgramm extends BaseAction {
+    /*private static class ExitProgramm extends BaseAction {
         protected ExitProgramm(int key, String name) {
             super(key, name);
         }
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            StartUI.exit = false;
+            //StartUI.exit = false;
+            //StartUI ui = new StartUI(input, tracker);
+            //ui.stop();
         }
-    }
+    }*/
 }
