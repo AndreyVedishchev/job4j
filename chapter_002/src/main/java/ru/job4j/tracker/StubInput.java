@@ -51,7 +51,7 @@ public class StubInput implements Input {
             }
         }
 
-        if (flag) {
+        if (!flag) {
             throw new MenuOutException("Введите номер действия из меню.");
         }
         return res;

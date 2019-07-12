@@ -1,7 +1,6 @@
 package ru.job4j.tracker;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -13,7 +12,6 @@ public class Tracker {
     /**
      * Массив для хранение заявок.
      */
-    //private final Item[] items = new Item[10];
     private List<Item> items = new ArrayList<>();
 
     /**
@@ -27,7 +25,6 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        //this.items[this.position++] = item;
         this.items.add(position++, item);
         return item;
     }
@@ -44,11 +41,6 @@ public class Tracker {
 
     public boolean replace(String id, Item item) {
         for (int i = 0; i < position; i++) {
-            /*if (items[i].getId().equals(id)) {
-                items[i] = item;
-                item.setId(id);
-                return true;
-            }*/
             if (items.get(i).getId().equals(id)) {
                 items.set(i, item);
                 item.setId(id);
@@ -59,14 +51,7 @@ public class Tracker {
     }
 
     public boolean delete(String id) {
-    int counter = 0;
         for (int i = 0; i < position; i++) {
-            counter++;
-            /*if (items[i].getId().equals(id)) {
-                System.arraycopy(items, i + 1, items, i, items.length - counter - 1);
-                position--;
-                return true;
-            }*/
             if (items.get(i).getId().equals(id)) {
                 items.remove(i);
                 return true;
@@ -76,13 +61,6 @@ public class Tracker {
     }
 
     public void edit(Item fresh) {
-        /*for (int index = 0; index != items.length; ++index) {
-            Item item = items[index];
-            if (item.getId().equals(fresh.getId())) {
-                items[index] = fresh;
-                break;
-            }
-        }*/
         for (int index = 0; index != items.size(); ++index) {
             Item item = items.get(index);
             if (item.getId().equals(fresh.getId())) {
@@ -92,24 +70,9 @@ public class Tracker {
         }
     }
 
-    /*public Item[] findAll() {
-        return Arrays.copyOf(this.items, this.position);
-    }*/
-
     public List<Item> findAll() {
         return items;
     }
-
-    /*public Item[] findByName(String key) {
-        Item[] arrayCopy = new Item[position];
-        int counter = 0;
-        for (int i = 0; i < position; i++) {
-            if (items[i] != null && items[i].getName().equals(key)) {
-                arrayCopy[counter++] = items[i];
-            }
-        }
-        return Arrays.copyOf(arrayCopy, counter);
-    }*/
 
     public List<Item> findByName(String key) {
         List<Item> arrayCopy = new ArrayList<>();
@@ -123,9 +86,6 @@ public class Tracker {
 
     public Item findById(String id) {
         for (int i = 0; i < position; i++) {
-            /*if (items[i].getId().equals(id)) {
-                return items[i];
-            }*/
             if (items.get(i).getId().equals(id)) {
                 return items.get(i);
             }
