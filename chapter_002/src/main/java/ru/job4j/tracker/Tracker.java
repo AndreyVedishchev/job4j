@@ -15,17 +15,12 @@ public class Tracker {
     private List<Item> items = new ArrayList<>();
 
     /**
-     * Указатель ячейки для новой заявки.
-     */
-    private int position = 0;
-
-    /**
      * Метод реализаущий добавление заявки в хранилище
      * @param item новая заявка
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items.add(position++, item);
+        this.items.add(item);
         return item;
     }
 
@@ -40,7 +35,7 @@ public class Tracker {
     }
 
     public boolean replace(String id, Item item) {
-        for (int i = 0; i < position; i++) {
+        for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getId().equals(id)) {
                 items.set(i, item);
                 item.setId(id);
@@ -51,7 +46,7 @@ public class Tracker {
     }
 
     public boolean delete(String id) {
-        for (int i = 0; i < position; i++) {
+        for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getId().equals(id)) {
                 items.remove(i);
                 return true;
@@ -85,7 +80,7 @@ public class Tracker {
     }
 
     public Item findById(String id) {
-        for (int i = 0; i < position; i++) {
+        for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getId().equals(id)) {
                 return items.get(i);
             }
