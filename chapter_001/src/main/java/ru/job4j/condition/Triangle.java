@@ -64,7 +64,7 @@ public class Triangle {
         double p = period(a, b, c);
 
         if (this.exist(a, b, c)) {
-            rsl = Math.sqrt(p *(p - a) * (p - b) * (p - c));
+            rsl = Math.sqrt(p * (p - a) * (p - b) * (p - c));
         }
         return rsl;
     }

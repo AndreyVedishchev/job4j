@@ -36,7 +36,7 @@ public class MaxTest {
     @Test
     public void when4Elem4Max() {
         Max max = new Max();
-        int result = max.max(2, 5, 4,7);
+        int result = max.max(2, 5, 4,  7);
         assertThat(result, is(7));
     }
 }

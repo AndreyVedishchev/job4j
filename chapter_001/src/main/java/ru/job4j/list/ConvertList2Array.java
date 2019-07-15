@@ -20,7 +20,9 @@ public class ConvertList2Array {
                 if (i + j + coef < list.size()) {
                     array[i][j] = list.get(i + j + coef);
                     j++;
-                } else break;
+                } else {
+                    break;
+                }
             }
             i++;
             j = 0;
