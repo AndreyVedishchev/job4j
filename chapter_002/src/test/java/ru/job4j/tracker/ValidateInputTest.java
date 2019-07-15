@@ -39,7 +39,7 @@ public class ValidateInputTest {
         ranges.add(0);
         ranges.add(1);
         ValidateInput input = new ValidateInput(
-                new StubInput(new String[] {"invalid", "9"})
+                new StubInput(new String[] {"invalid", "1"})
         );
         input.ask("Enter", ranges);
         assertThat(
@@ -56,7 +56,7 @@ public class ValidateInputTest {
         ranges.add(0);
         ranges.add(1);
         ValidateInput input = new ValidateInput(
-                new StubInput(new String[] {"1", "9"})
+                new StubInput(new String[] {"10", "1"})
         );
         input.ask("Enter", ranges);
         assertThat(
