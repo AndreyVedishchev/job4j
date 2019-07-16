@@ -3,30 +3,26 @@ package ru.job4j.list.sort;
 import java.util.Comparator;
 
 public class ListCompare implements Comparator<String> {
+
     @Override
     public int compare(String left, String right) {
         int res = 0;
-        int index = left.length() > right.length() ? right.length() : left.length();
-        
+        char[] leftArr = left.toCharArray();
+        char[] rightArr = right.toCharArray();
+        int index = leftArr.length > rightArr.length ? rightArr.length : leftArr.length;
+
         for (int i = 0; i < index; i++) {
-            if (left.charAt(i) == right.charAt(i)) {
+            if (Character.compare(leftArr[i], rightArr[i]) == 0) {
                 continue;
-            }
-            if (left.charAt(i) > right.charAt(i)) {
-                res = 1;
-                break;
-            }
-            if (left.charAt(i) < right.charAt(i)) {
-                res = -1;
-                break;
+            } else {
+                res = Character.compare(leftArr[i], rightArr[i]);
             }
         }
-
-        if (res == 0 && left.length() != right.length()) {
-            if (left.length() > right.length()) {
+        if (res == 0) {
+            if (Integer.compare(leftArr.length, rightArr.length) > 0) {
                 res = 1;
             }
-            if (left.length() < right.length()) {
+            if (Integer.compare(leftArr.length, rightArr.length) < 0) {
                 res = -1;
             }
         }
