@@ -121,7 +121,7 @@ public class StartUITest {
         StartUI startUI = new StartUI(input, tracker);
         startUI.init();
         assertThat(this.out.toString(),
-                is(menu + item.getId() + ". " + item.getName() + "\r\n" + menu)
+                is(menu + item.getId() + ". " + item.getName() + System.lineSeparator() + menu)
         );
     }
 
