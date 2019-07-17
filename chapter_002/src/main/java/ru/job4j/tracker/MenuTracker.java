@@ -2,16 +2,20 @@ package ru.job4j.tracker;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
+
 import static java.lang.System.currentTimeMillis;
 
 public class MenuTracker {
     private Input input;
     private Tracker tracker;
     private List<UserAction> actions = new ArrayList<>();
+    private final Consumer<String> output;
 
-    public MenuTracker(Input input, Tracker tracker) {
+    public MenuTracker(Input input, Tracker tracker, Consumer<String> output) {
         this.input = input;
         this.tracker = tracker;
+        this.output = output;
     }
 
     public List<UserAction> getActions() {
@@ -35,7 +39,7 @@ public class MenuTracker {
     public void show() {
         for (UserAction action : this.actions) {
             if (action != null) {
-                System.out.println(action.info());
+                output.accept(action.info());
             }
         }
     }
@@ -54,7 +58,7 @@ public class MenuTracker {
         }
     }
 
-    private static class ShowItems extends BaseAction {
+    private class ShowItems extends BaseAction {
 
         protected ShowItems(int key, String name) {
             super(key, name);
@@ -63,7 +67,7 @@ public class MenuTracker {
         @Override
         public void execute(Input input, Tracker tracker) {
             for (Item item : tracker.findAll()) {
-                System.out.println(
+                output.accept(
                         String.format("%s. %s", item.getId(), item.getName())
                 );
             }

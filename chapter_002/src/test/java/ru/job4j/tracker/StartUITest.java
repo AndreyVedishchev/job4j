@@ -8,21 +8,29 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import static java.lang.System.currentTimeMillis;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 public class StartUITest {
-    /**
-     * Получение поля с дефолтным выводом в консоль
-     */
-    private final PrintStream stdout = System.out;
 
     /**
      * буфер для результата
      */
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    private final Consumer<String> output = new Consumer<>() {
+
+    /**
+     * Получение поля с дефолтным выводом в консоль
+     */
+    private final PrintStream stdout = new PrintStream(out);
+        @Override
+        public void accept(String s) {
+            stdout.println(s);
+        }
+    };
 
     @Before
     public void loadOutput() {
@@ -30,11 +38,11 @@ public class StartUITest {
         System.setOut(new PrintStream(this.out));
     }
 
-    @After
+    /*@After
     public void backOutput() {
-        System.setOut(this.stdout);
+        System.setOut(stdout);
         System.out.println("execute after method");
-    }
+    }*/
 
     @Test
     public void whenInvalidInput() {
@@ -57,7 +65,7 @@ public class StartUITest {
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker();     // создаём Tracker
         Input input = new StubInput(new String[]{"0", "test name", "desc", "6"});   //создаём StubInput с последовательностью действий
-        new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
+        new StartUI(input, tracker, output).init();     //   создаём StartUI и вызываем метод init()
         assertThat(tracker.findAll().get(0).getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
     }
 
@@ -66,7 +74,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc", currentTimeMillis()));
         Input input = new StubInput(new String[]{"2", item.getId(), /*itemRepl.getId(),*/"test replace", "desc repl", "6"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         assertThat(tracker.findAll().get(0).getName(), is("test replace"));
     }
 
@@ -75,7 +83,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc", currentTimeMillis()));
         Input input = new StubInput(new String[]{"3", item.getId(), "6"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         assertThat(tracker.findAll().size(), is(0));
     }
 
@@ -84,7 +92,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc", currentTimeMillis()));
         Input input = new StubInput(new String[]{"4", item.getId(), "6"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         assertThat(tracker.findById(item.getId()).getId(), is(item.getId()));
     }
 
@@ -93,7 +101,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc", currentTimeMillis()));
         Input input = new StubInput(new String[]{"5", item.getName(), "6"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         assertThat(tracker.findByName(item.getName()).get(0).getName(), is("test name"));
     }
 
@@ -118,7 +126,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc", currentTimeMillis()));
         Input input = new StubInput(new String[]{"1", "6"});
-        StartUI startUI = new StartUI(input, tracker);
+        StartUI startUI = new StartUI(input, tracker, output);
         startUI.init();
         assertThat(this.out.toString(),
                 is(menu + item.getId() + ". " + item.getName() + System.lineSeparator() + menu)
@@ -129,7 +137,7 @@ public class StartUITest {
     public void whenShowMenu() {
         Tracker tracker = new Tracker();
         Input input = new StubInput(new String[]{"6"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         assertThat(this.out.toString(),
                 is(
                         new StringBuilder()
