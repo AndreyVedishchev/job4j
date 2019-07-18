@@ -1,4 +1,4 @@
-package ru.job4j.tracker.bankTransfers;
+package ru.job4j.tracker.banktransfers;
 
 public class Main {
     public static void main(String[] args) {
