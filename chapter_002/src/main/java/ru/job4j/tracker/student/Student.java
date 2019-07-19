@@ -9,8 +9,9 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "score=" + score +
-                '}';
+        return "Student{"
+                + "score="
+                + score
+                + '}';
     }
 }
