@@ -28,11 +28,11 @@ public class SchoolTest {
         );
         Predicate<Student> predicate = s -> s.score >= 70;
         List<Student> res = school.collect(list, predicate);
-        assertThat(res, is(
+        assertThat(res.toString(), is(
                 Arrays.asList(
                         new Student(80),
                         new Student(96)
-                )
+                ).toString()
         ));
     }
 
@@ -52,11 +52,11 @@ public class SchoolTest {
         Predicate<Student> predicate = s -> s.score > 50
                 && s.score < 70;
         List<Student> res = school.collect(list, predicate);
-        assertThat(res, is(
+        assertThat(res.toString(), is(
                 Arrays.asList(
                         new Student(55),
                         new Student(64)
-                )
+                ).toString()
         ));
     }
 
@@ -75,11 +75,11 @@ public class SchoolTest {
         );
         Predicate<Student> predicate = s -> s.score < 50;
         List<Student> res = school.collect(list, predicate);
-        assertThat(res, is(
+        assertThat(res.toString(), is(
                 Arrays.asList(
                         new Student(10),
                         new Student(42)
-                )
+                ).toString()
         ));
     }
 }
