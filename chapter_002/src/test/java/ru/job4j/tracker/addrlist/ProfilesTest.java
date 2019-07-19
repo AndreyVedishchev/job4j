@@ -17,6 +17,7 @@ public class ProfilesTest {
         List<Profile> profiles = new ArrayList<>(
                 Arrays.asList(
                         new Profile(new Address("City1", "Street1", 1, 1)),
+                        new Profile(new Address("City1", "Street1", 1, 1)),
                         new Profile(new Address("City2", "Street2", 2, 2)),
                         new Profile(new Address("City3", "Street3", 3, 3))
                 )
