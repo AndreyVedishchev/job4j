@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Operations {
 
@@ -36,11 +37,14 @@ public class Operations {
      * @param account
      */
     public void addAccountToUser(String passport, Account account) {
-        for (Map.Entry<User, List<Account>> user : userListMap.entrySet()) {
+        /*for (Map.Entry<User, List<Account>> user : userListMap.entrySet()) {
             if (user.getKey().getPassport().equals(passport)) {
                 user.getValue().add(account);
             }
-        }
+        }*/
+
+        userListMap.entrySet().stream().filter(user -> user.getKey().equals(passport))
+                .peek(userListEntry -> userListEntry.getValue().add(account));
     }
 
     /**
@@ -54,6 +58,9 @@ public class Operations {
                 user.getValue().remove(account);
             }
         }
+
+        /*userListMap.entrySet().stream().filter(user -> user.getKey().equals(passport))
+                .peek(userListEntry -> userListEntry.getValue().remove(account));*/
     }
 
     /**
@@ -68,6 +75,9 @@ public class Operations {
                 userAccounts = user.getValue();
             }
         }
+
+        /*userListMap.entrySet().stream().filter(user -> user.getKey().equals(passport))
+                .forEach(e -> userAccounts.add((Account) e));*/
         return userAccounts;
     }
 
