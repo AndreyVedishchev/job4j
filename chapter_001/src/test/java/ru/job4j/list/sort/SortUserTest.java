@@ -11,20 +11,24 @@ public class SortUserTest {
     @Test
     public void sortAgeUsers() {
         SortUser sortUser = new SortUser();
-        List<User> list = new ArrayList<>(Arrays.asList(
+        List<User> list = new ArrayList<>(
+                List.of(
                 new User("27", "petr"),
                 new User("33", "ivan"),
                 new User("33", "ivan"),
                 new User("44", "zuma"),
                 new User("21", "zuma")
-        ));
+                )
+        );
 
-        Set<User> expect = new TreeSet<>(Arrays.asList(
+        Set<User> expect = new TreeSet<>(
+                Set.of(
                 new User("21", "zuma"),
                 new User("27", "petr"),
                 new User("33", "ivan"),
                 new User("44", "zuma")
-        ));
+                )
+        );
         assertThat(sortUser.sort(list), is(expect));
     }
 }

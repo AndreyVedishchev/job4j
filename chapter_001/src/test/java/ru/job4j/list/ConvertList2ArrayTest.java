@@ -1,11 +1,8 @@
 package ru.job4j.list;
 
 import org.junit.Test;
-
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
@@ -30,17 +27,16 @@ public class ConvertList2ArrayTest {
     @Test
     public void listArraysIn1List() {
         ConvertList2Array convertList2Array = new ConvertList2Array();
-        List<int[]> listArr = new ArrayList<>();
-        listArr.add(new int[]{1, 2});
-        listArr.add(new int[]{3, 4, 5, 6});
+        List<int[]> listArr = new ArrayList<>(
+                List.of(
+                        new int[]{1, 2},
+                        new int[]{3, 4, 5, 6}
+                )
+        );
 
-        List<Integer> expect = new ArrayList<>();
-        expect.add(1);
-        expect.add(2);
-        expect.add(3);
-        expect.add(4);
-        expect.add(5);
-        expect.add(6);
+        List<Integer> expect = new ArrayList<>(
+                List.of(1, 2, 3, 4, 5, 6)
+        );
 
         List<Integer> result;
         result = convertList2Array.convert(listArr);
