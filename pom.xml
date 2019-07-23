@@ -14,10 +14,12 @@
     </properties>
 
     <modules>
-       <module>chapter_001</module>
-	   <module>puzzle</module>
+       	<module>chapter_001</module>
+	   	<module>puzzle</module>
 		<module>chess</module>
         <module>chapter_002</module>
+		<module>tictactoe</module>
+
     </modules>
 	
 	<dependencies>
