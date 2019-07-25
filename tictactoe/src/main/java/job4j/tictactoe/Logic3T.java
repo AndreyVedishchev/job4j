@@ -23,7 +23,7 @@ public class Logic3T {
         return result;
     }
 
-    public boolean isWinnerX() {
+    /*public boolean isWinnerX() {
         return this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 0) ||
                 this.fillBy(Figure3T::hasMarkX, 0, 0, 0, 1) ||
                 this.fillBy(Figure3T::hasMarkX, 0,0, 1, 1) ||
@@ -44,9 +44,28 @@ public class Logic3T {
                 this.fillBy(Figure3T::hasMarkO, 0, 1, 1, 0)||
                 this.fillBy(Figure3T::hasMarkO, 1, 0, 0, 1)||
                 this.fillBy(Figure3T::hasMarkO, 2, 0, 0, 1);
+    }*/
+
+    public boolean whoIsWinner(Predicate<Figure3T> pr) {
+        return this.fillBy(pr, 0, 0, 1, 0) ||
+                this.fillBy(pr, 0, 0, 0, 1) ||
+                this.fillBy(pr, 0,0, 1, 1) ||
+                this.fillBy(pr, this.table.length - 1 , 0, -1, 1)||
+                this.fillBy(pr, 0, 2, 1, 0)||
+                this.fillBy(pr, 0, 1, 1, 0)||
+                this.fillBy(pr, 1, 0, 0, 1)||
+                this.fillBy(pr, 2, 0, 0, 1);
     }
 
     public boolean hasGap() {
-        return true;
+        boolean res = false;
+        for (int i = 0; i < table.length; i++) {
+            for (int j = 0; j < table[i].length; j++) {
+                if (!table[i][j].hasMarkO() && !table[i][j].hasMarkX()) {
+                    res = true;
+                }
+            }
+        }
+        return res;
     }
 }
