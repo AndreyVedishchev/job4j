@@ -1,9 +1,6 @@
 package ru.job4j.tracker.banktransfers;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Operations {
@@ -18,7 +15,7 @@ public class Operations {
      * @param user
      */
     public void addUser(User user) {
-        this.userListMap.putIfAbsent(user, user.getAccounts());
+        this.userListMap.putIfAbsent(user, new ArrayList<Account>());
     }
 
     /**
@@ -43,8 +40,8 @@ public class Operations {
             }
         }*/
 
-        userListMap.entrySet().stream().filter(user -> user.getKey().equals(passport))
-                .peek(userListEntry -> userListEntry.getValue().add(account));
+        userListMap.entrySet().stream().filter(user -> user.getKey().getPassport().equals(passport))
+                .map(e -> e.getValue().add(account)).collect(Collectors.toList());
     }
 
     /**
@@ -53,14 +50,23 @@ public class Operations {
      * @param account
      */
     public void deleteAccountFromUser(String passport, Account account) {
-        for (Map.Entry<User, List<Account>> user : userListMap.entrySet()) {
+        /*for (Map.Entry<User, List<Account>> user : userListMap.entrySet()) {
             if (user.getKey().getPassport().equals(passport)) {
                 user.getValue().remove(account);
             }
-        }
+        }*/
 
-        /*userListMap.entrySet().stream().filter(user -> user.getKey().equals(passport))
-                .peek(userListEntry -> userListEntry.getValue().remove(account));*/
+        List<Account> temp; //отфильтрованный лист аккаунтов по паспорту
+        List<Account> res;  //отредактированный лист аккаунтов
+
+        temp = userListMap.entrySet().stream().filter(user -> user.getKey().getPassport().equals(passport))
+                .map(Map.Entry::getValue).flatMap(Collection::stream).collect(Collectors.toList());
+
+        res = temp.stream().filter(e -> !e.equals(account)).collect(Collectors.toList());
+
+        userListMap.entrySet().stream().filter(user -> user.getKey().getPassport().equals(passport))
+                .map(e -> e.setValue(res)).collect(Collectors.toList());
+        //перезапись нужному пользователю обновленного списка аккаунтов
     }
 
     /**
@@ -69,16 +75,14 @@ public class Operations {
      * @return
      */
     public List<Account> getUserAccounts(String passport) {
-        List<Account> userAccounts = new ArrayList<>();
-        for (Map.Entry<User, List<Account>> user : userListMap.entrySet()) {
+        /*for (Map.Entry<User, List<Account>> user : userListMap.entrySet()) {
             if (user.getKey().getPassport().equals(passport)) {
                 userAccounts = user.getValue();
             }
-        }
+        }*/
 
-        /*userListMap.entrySet().stream().filter(user -> user.getKey().equals(passport))
-                .forEach(e -> userAccounts.add((Account) e));*/
-        return userAccounts;
+        return userListMap.entrySet().stream().filter(user -> user.getKey().getPassport().equals(passport))
+                .map(Map.Entry::getValue).flatMap(Collection::stream).collect(Collectors.toList());
     }
 
     /**
@@ -119,7 +123,7 @@ public class Operations {
      * @return - account
      */
     private Account searchAccount(String passport, String requisite) {
-        Account ac = null;
+        /*Account ac = null;
         for (Map.Entry<User, List<Account>> userMap : userListMap.entrySet()) {
             if (userMap.getKey().getPassport().equals(passport)) {
                 for (Account account : userMap.getValue()) {
@@ -128,7 +132,11 @@ public class Operations {
                     }
                 }
             }
-        }
-        return ac;
+        }*/
+
+        List<Account> temp = userListMap.entrySet().stream().filter(user -> user.getKey().getPassport().equals(passport))
+                .map(Map.Entry::getValue).flatMap(Collection::stream).collect(Collectors.toList());
+
+        return temp.stream().filter(e -> e.getRequisites().equals(requisite)).collect(Collectors.toList()).get(0);
     }
 }

@@ -24,4 +24,12 @@ public class Account {
     public void setRequisites(String requisites) {
         this.requisites = requisites;
     }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "value=" + value +
+                ", requisites='" + requisites + '\'' +
+                '}';
+    }
 }

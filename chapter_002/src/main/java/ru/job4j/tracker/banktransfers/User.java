@@ -7,12 +7,12 @@ import java.util.Objects;
 public class User {
     private String name;
     private String passport;
-    List<Account> accounts;
+    //List<Account> accounts;
 
     public User(String name, String passport) {
         this.name = name;
         this.passport = passport;
-        this.accounts = new ArrayList<>();
+        //this.accounts = new ArrayList<>();
     }
 
     public String getName() {
@@ -31,13 +31,13 @@ public class User {
         this.passport = passport;
     }
 
-    public List<Account> getAccounts() {
-        return accounts;
-    }
-
-    public void setAccounts(List<Account> accounts) {
-        this.accounts = accounts;
-    }
+//    public List<Account> getAccounts() {
+//        return accounts;
+//    }
+//
+//    public void setAccounts(List<Account> accounts) {
+//        this.accounts = accounts;
+//    }
 
     @Override
     public boolean equals(Object o) {
