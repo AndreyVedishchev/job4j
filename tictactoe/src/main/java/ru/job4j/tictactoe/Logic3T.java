@@ -1,4 +1,4 @@
-package job4j.tictactoe;
+package ru.job4j.tictactoe;
 
 import java.util.function.Predicate;
 
@@ -47,14 +47,14 @@ public class Logic3T {
     }*/
 
     public boolean whoIsWinner(Predicate<Figure3T> pr) {
-        return this.fillBy(pr, 0, 0, 1, 0) ||
-                this.fillBy(pr, 0, 0, 0, 1) ||
-                this.fillBy(pr, 0,0, 1, 1) ||
-                this.fillBy(pr, this.table.length - 1 , 0, -1, 1)||
-                this.fillBy(pr, 0, 2, 1, 0)||
-                this.fillBy(pr, 0, 1, 1, 0)||
-                this.fillBy(pr, 1, 0, 0, 1)||
-                this.fillBy(pr, 2, 0, 0, 1);
+        return this.fillBy(pr, 0, 0, 1, 0)
+                || this.fillBy(pr, 0, 0, 0, 1)
+                || this.fillBy(pr, 0, 0, 1, 1)
+                || this.fillBy(pr, this.table.length - 1, 0, -1, 1)
+                || this.fillBy(pr, 0, 2, 1, 0)
+                || this.fillBy(pr, 0, 1, 1, 0)
+                || this.fillBy(pr, 1, 0, 0, 1)
+                || this.fillBy(pr, 2, 0, 0, 1);
     }
 
     public boolean hasGap() {
