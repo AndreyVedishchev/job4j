@@ -1,7 +1,7 @@
 package ru.job4j.chess;
 
-import ru.job4j.chess.firuges.Cell;
-import ru.job4j.chess.firuges.Figure;
+import ru.job4j.chess.figures.Cell;
+import ru.job4j.chess.figures.Figure;
 
 public class Board {
     final int sizeBoard = 32;
@@ -27,5 +27,25 @@ public class Board {
                 }
             };
         }
+    }
+
+    boolean move(Cell source, Cell dest)
+            throws ImpossibleMoveException, OccupiedWayException, FigureNotFoundException {
+        Figure temp = null;
+        /*for (int i = 0; i < figures.length - 1; i++) {
+            if (figures[i].position() == source) {
+
+            }
+        }*/
+
+        return false;
+    }
+
+    public boolean isVert(Cell source, Cell dest) {
+        return source.y == dest.y && source.x != dest.x;
+    }
+
+    public boolean isHor(Cell source, Cell dest) {
+        return source.x == dest.x && source.y != dest.y;
     }
 }
