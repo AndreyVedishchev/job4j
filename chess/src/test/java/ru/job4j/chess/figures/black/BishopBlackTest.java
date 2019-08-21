@@ -19,13 +19,23 @@ public class BishopBlackTest {
     public void checkCopy() {
         Figure bishopBlack = new BishopBlack(Cell.C1);
         Figure bishopCopy = bishopBlack.copy(Cell.C1);
-        assertThat(bishopCopy.position(), is(Cell.C1));
+        assertThat(bishopCopy, is(bishopBlack));
     }
 
     @Test
-    public void checkWay() {
+    public void checkWayIfDiagonal() {
         Figure bishopBlack = new BishopBlack(Cell.C1);
         Cell[] cellArr = {Cell.D2, Cell.E3, Cell.F4, Cell.G5};
         assertThat(bishopBlack.way(Cell.C1, Cell.G5), is(cellArr));
+    }
+
+    @Test
+    public void checkWayIfNotDiagonal() {
+        Figure bishopBlack = new BishopBlack(Cell.C1);
+        assertThat(bishopBlack.way(Cell.C1, Cell.E3), is(
+        new IllegalStateException(
+                String.format("Could not move by diagonal from %s to %s", Cell.C1, Cell.E3)
+            )
+        ));
     }
 }

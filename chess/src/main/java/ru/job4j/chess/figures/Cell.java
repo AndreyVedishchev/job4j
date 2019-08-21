@@ -17,4 +17,14 @@ public enum Cell {
         this.x = x;
         this.y = y;
     }
+
+    public static Cell findByCor(int x, int y) {
+        Cell[] values = Cell.values();
+        for (Cell value : values) {
+            if (value.x == x && value.y == y) {
+                return value;
+            }
+        }
+        return null;
+    }
 }

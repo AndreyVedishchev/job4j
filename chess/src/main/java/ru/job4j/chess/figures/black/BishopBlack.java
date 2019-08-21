@@ -1,6 +1,5 @@
 package ru.job4j.chess.figures.black;
 
-import ru.job4j.chess.Board;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
@@ -31,14 +30,12 @@ public class BishopBlack implements Figure {
         }
         int size = Math.abs(source.x - dest.x);
         Cell[] steps = new Cell[size];
-        int deltaX = source.x;
-        int deltaY = source.y;
-        for (int index = 0; index < size; index++) {
-            //steps[index] = new Cell(deltaX, deltaY);
-            deltaX = source.x < dest.x ? deltaX++ : deltaX--;
-            deltaY = source.y < dest.y ? deltaY++ : deltaY--;
+        int deltaX = dest.x > source.x ? 1 : -1;
+        int deltaY = dest.y > source.y ? 1 : -1;
+        for (int index = 1; index <= size; index++) {
+            Cell byCor = Cell.findByCor(source.x * index * deltaX, source.y * index * deltaY);
+            steps[index - 1] = byCor;
         }
-
         return steps;
     }
 
